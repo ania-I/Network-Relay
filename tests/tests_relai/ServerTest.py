@@ -17,5 +17,5 @@ def handle_client(connectionSocket):
 
 
 while True:
-    connectionSocket,address=ServerSocket.connect()
+    connectionSocket,address=ServerSocket.accept()
     Thread(target=handle_client, args=(connectionSocket,), daemon=True).start()

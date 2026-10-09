@@ -8,7 +8,6 @@ def relay(src, dst):
     """
     Retransmet les données de source vers destination.
     """
-
     try:
         while True:
             received = src.recv(2048)
@@ -35,7 +34,7 @@ def handle_client(client_socket, client_address, serverName, serverPort):
         serverSocket.connect((serverName, serverPort))
         print(f"Relay connected to {serverName}:{serverPort}")
 
-    except ConnectionError as e:
+    except OSError:
         print("Erreur de connexion au serveur")
         client_socket.close()
         serverSocket.close()
@@ -66,6 +65,7 @@ def main():
     serverPort = int(sys.argv[2])
 
     relaySocket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+    relaySocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     relaySocket.bind(('', RELAY_PORT))
     relaySocket.listen()
     print("Relay ready")
