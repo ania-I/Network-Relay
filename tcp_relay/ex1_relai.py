@@ -4,7 +4,6 @@ import threading
 
 RELAY_PORT = 1234
 
-
 def relay(src, dst):
     """
     Retransmet les données de source vers destination.
@@ -18,10 +17,8 @@ def relay(src, dst):
                 break
             else:
                 dst.sendall(received)
-
     finally:
-        src.close()
-        dst.close()
+        dst.shutdown(socket.SHUT_WR)
 
 
 
@@ -38,25 +35,24 @@ def handle_client(client_socket, client_address, serverName, serverPort):
         serverSocket.connect((serverName, serverPort))
         print(f"Relay connected to {serverName}:{serverPort}")
 
-        # Création des 2 threads aller et retour
-        thread_client_to_server = threading.Thread(target=relay, args=(client_socket, serverSocket))
-        thread_server_to_client = threading.Thread(target=relay,args=(serverSocket, client_socket))
-
-        thread_client_to_server.start()
-        thread_server_to_client.start()
-
-        thread_client_to_server.join()
-        thread_server_to_client.join()
-
     except ConnectionError as e:
         print("Erreur de connexion au serveur")
-
         client_socket.close()
         serverSocket.close()
 
-    finally:
-        # serverSocket et client_socket fermé dans relay()
-        print(f"{client_address} deconnected.")
+    # Création des 2 threads aller et retour
+    thread_client_to_server = threading.Thread(target=relay, args=(client_socket, serverSocket))
+    thread_server_to_client = threading.Thread(target=relay,args=(serverSocket, client_socket))
+
+    thread_client_to_server.start()
+    thread_server_to_client.start()
+
+    thread_client_to_server.join()
+    thread_server_to_client.join()
+
+    client_socket.close()
+    serverSocket.close()
+    print(f"{client_address} deconnected.")
 
 
 
