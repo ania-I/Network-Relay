@@ -16,33 +16,6 @@ class HttpRelay:
     def _build_response(self, status, body):
         return (f"HTTP/1.1 {status}\r\nContent-Length: {len(body)}\r\n\r\n{body}").encode()
 
-    # def _get_from_cache(self, uri):
-    #     try:
-    #         with open("index.json", "r", encoding="utf-8") as f:
-    #             index = json.load(f)
-    #     except FileNotFoundError:
-    #         return None
-
-    #     if uri in index and os.path.isfile(index[uri]):
-    #         with open(index[uri], "rb") as f:
-    #             return f.read()
-    #     return None
-
-    # def _handle_response(self, uri, response):
-    #     os.makedirs("cache", exist_ok=True)
-    #     cache_path = os.path.join("cache", hashlib.sha256(uri.encode()).hexdigest())
-    #     with open(cache_path, "wb") as f:
-    #         f.write(response)
-    #     try:
-    #         with open("index.json", "r", encoding="utf-8") as f:
-    #             data = json.load(f)
-    #     except FileNotFoundError:
-    #         data = {}
-
-    #     data[uri] = cache_path
-
-    #     with open("index.json", "w", encoding="utf-8") as f:
-    #         json.dump(data, f, indent=4)
 
     def _transfere(self, uri, version):
         exit_point = socket(AF_INET, SOCK_STREAM)
@@ -68,18 +41,7 @@ class HttpRelay:
             exit_point.close()
 
         return response
-
-    # def save_logs(self, client_ip, uri, response):
-    #     data = {
-    #         "ip": client_ip,
-    #         "uri": uri,
-    #         "taille": len(response),
-    #         "response": response.decode("utf-8", errors="replace")
-    #     }
-    #     with self._log_lock:
-    #         with open("file.log", "a", encoding="utf-8") as f:
-    #             f.write(json.dumps(data) + "\n")
-
+        
     def save_censure(self, client_ip, uri, response):
         data = {
             "ip": client_ip,
@@ -122,19 +84,11 @@ class HttpRelay:
         if method != "GET":
             return self._build_response("405 Method Not Allowed", "<h1>405 Method Not Allowed</h1>")
 
-        # censure : ni le cache ni le serveur ne sont sollicités
         if self._is_forbidden(uri):
             print(f"[CENSURE] {ip_client} {uri}")
             response = self._build_response("403 Forbidden", "<h1>Interdit</h1>")
             self.save_censure(ip_client, uri, response)
             return response
-
-        # response = self._get_from_cache(uri)
-        # if response is not None:
-        #     print(f"[CACHE] {uri}")
-        #     if len(response) > 0:
-        #         self.save_logs(ip_client, uri, response)
-        #     return response
 
         print(f"[RELAI] {uri}")
         response = self._transfere(uri, version)

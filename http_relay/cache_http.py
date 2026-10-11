@@ -89,8 +89,10 @@ class HttpRelay:
         response = self._transfere(uri, version)
         if response is None:
             return self._build_response("502 Bad Gateway", "<h1>502 Bad Gateway</h1>")
-
-        self._handle_response(uri, response)
+        
+        status=response.split(b"\r\n",1)[0]
+        if b"200" in status:
+          self._handle_response(uri, response)
         return response
 
     def _handle_client(self, ClientSocket) -> None:
