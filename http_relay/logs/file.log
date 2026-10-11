@@ -1,2 +1,0 @@
-{"ip": "127.0.0.1", "uri": "/", "taille": 202, "response": "HTTP/1.0 200 OK\r\nServer: SimpleHTTP/0.6 Python/3.12.8\r\nDate: Sun, 11 Oct 2026 08:13:34 GMT\r\nContent-type: text/html\r\nContent-Length: 17\r\nLast-Modified: Wed, 30 Sep 2026 18:42:26 GMT\r\n\r\n<h1>Helloooo</h1>"}
-{"ip": "127.0.0.1", "uri": "/test.html", "taille": 198, "response": "HTTP/1.0 200 OK\r\nServer: SimpleHTTP/0.6 Python/3.12.8\r\nDate: Sun, 11 Oct 2026 08:13:54 GMT\r\nContent-type: text/html\r\nContent-Length: 13\r\nLast-Modified: Thu, 01 Oct 2026 21:15:17 GMT\r\n\r\n<h1>Test</h1>"}

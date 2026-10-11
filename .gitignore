@@ -1,0 +1,11 @@
+#Cache
+http_relay/cache/
+
+#Logs
+http_relay/logs
+*.log
+
+#
+_pycache_/
+*.pyc
+
