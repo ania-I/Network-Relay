@@ -34,3 +34,8 @@ Implementation of TCP and HTTP relay mechanisms in Python.
     http://127.0.0.1:1234/toto # Renvoie erreur 404
     ```
     On peut remarquer sur le terminal du relai et celui du serveur les requêtes effectuées et HIT/MISS sur le cache.
+
+
+
+##Ressources utilisée:
+relai http: https://thepythoncode.com/article/building-a-tcp-proxy-with-python

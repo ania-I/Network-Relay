@@ -7,7 +7,7 @@ import hashlib
 
 class HttpRelay:
     def __init__(self):
-        self._local_port: int = 1234
+        self._local_port: int = 8910
         self._remote_addr: str = ""
         self._remote_port: int = 0
         self._timeout: int = 2
@@ -24,7 +24,7 @@ class HttpRelay:
             exit_point.connect((self._remote_addr, self._remote_port))
             exit_point.sendall(
                 f"GET {uri} {version}\r\nHost: {self._remote_addr}\r\nConnection: close\r\n\r\n".encode()
-            )
+               )
             response = b""
             while True:
                 chunk = exit_point.recv(2048)
@@ -67,11 +67,13 @@ class HttpRelay:
 
         print(f"[RELAI] {uri}")
         response = self._transfere(uri, version)
+
         if response is None:
             return self._build_response("502 Bad Gateway", "<h1>502 Bad Gateway</h1>")
 
         if len(response) > 0:
             self.save_logs(ip_client, uri, response)
+            
         return response
 
     def _handle_client(self, ClientSocket) -> None:

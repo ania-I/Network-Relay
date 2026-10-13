@@ -7,7 +7,7 @@ import hashlib
 
 class HttpRelay:
     def __init__(self):
-        self._local_port: int = 1234
+        self._local_port: int = 4567
         self._remote_addr: str = ""
         self._remote_port: int = 0
         self._timeout: int = 2
@@ -75,12 +75,10 @@ class HttpRelay:
 
     def _handle_request(self, request, ip_client):
         parts = request.split("\r\n")[0].split()
-
         if len(parts) != 3:
             return self._build_response("400 Bad Request", "<h1>400 Bad Request</h1>")
 
         method, uri, version = parts
-
         if method != "GET":
             return self._build_response("405 Method Not Allowed", "<h1>405 Method Not Allowed</h1>")
 
@@ -94,10 +92,7 @@ class HttpRelay:
         response = self._transfere(uri, version)
         if response is None:
             return self._build_response("502 Bad Gateway", "<h1>502 Bad Gateway</h1>")
-
-        self._handle_response(uri, response)
-        if len(response) > 0:
-            self.save_logs(ip_client, uri, response)
+        
         return response
 
     def _handle_client(self, ClientSocket) -> None:
@@ -110,8 +105,6 @@ class HttpRelay:
                     return
                 data += chunk
             ClientSocket.sendall(self._handle_request(data.decode(errors="replace"), ip_client))
-        except OSError:
-            pass
         finally:
             ClientSocket.close()
 
