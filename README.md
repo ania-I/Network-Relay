@@ -72,11 +72,7 @@ Implementation of TCP and HTTP relay mechanisms in Python.
     Les requêtes faites par le client apparaissent dans `/logs/file.log`.
 
 ### Censeur HTTP
-* Tester `ex2_censure_http.py` (port 1236) : dans 2 terminaux différents depuis la racine du projet
-    + Lancer le serveur HTTP
-    ```bash
-    python3 tests/tests_http_server/http_server.py # serveur sur le port 8080
-    ```
+
 
 ## Ressources utilisées:
 Relai http: https://thepythoncode.com/article/building-a-tcp-proxy-with-python
