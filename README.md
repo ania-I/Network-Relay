@@ -31,7 +31,7 @@ Implementation of TCP and HTTP relay mechanisms in Python.
     ```
     On peut voir affichés les clients connectés/deconnectés au relai.
 
-## Exercice 2 : Relai HTTP avec cache
+## Exercice 2 : Relai HTTP
 
 ### Cache HTTP
 * Tester `ex2_httpcache.py` (port du cache : 1234) : dans 2 terminaux différents depuis la racine du projet
