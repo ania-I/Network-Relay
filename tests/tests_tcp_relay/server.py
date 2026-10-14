@@ -5,6 +5,7 @@ import time
 
 serverPort = 9000 # Port du serveur à connecter au relai
 serverSocket = socket(AF_INET,SOCK_STREAM)
+serverSocket.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
 serverSocket.bind(('',serverPort))
 serverSocket.listen(1)
 print('Server ready')
