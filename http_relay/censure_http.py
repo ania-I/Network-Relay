@@ -47,9 +47,8 @@ class HttpRelay:
             "uri": uri,
             "response": response.decode("utf-8", errors="replace")
         }
-        os.makedirs("logs",exist_ok=True)
         with open("logs/censure.log", "a", encoding="utf-8") as f:
-            f.write(json.dumps(data) + "\n")
+                f.write(json.dumps(data) + "\n")
 
     def check_censure(self):
         censure = []

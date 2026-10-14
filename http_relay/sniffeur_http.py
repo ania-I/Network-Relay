@@ -7,7 +7,7 @@ import hashlib
 
 class HttpRelay:
     def __init__(self):
-        self._local_port: int = 1235
+        self._local_port: int = 8910
         self._remote_addr: str = ""
         self._remote_port: int = 0
         self._timeout: int = 2
