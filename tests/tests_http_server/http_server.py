@@ -1,3 +1,4 @@
+# Code issu du TME1 exercice 3 (serveur)
 from socket import *
 from threading import *
 from pathlib import Path
