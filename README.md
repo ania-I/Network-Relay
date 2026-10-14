@@ -34,10 +34,10 @@ Implementation of TCP and HTTP relay mechanisms in Python.
 ## Exercice 2 : Relai HTTP avec cache
 
 ### Cache HTTP
-* Tester `ex2_httpcache.py` : dans 2 terminaux différents depuis la racine du projet
+* Tester `ex2_httpcache.py` (port 1234) : dans 2 terminaux différents depuis la racine du projet
     + Lancer le serveur HTTP (issu du TM1 - ex3)
     ```bash
-    python3 tests/tests_http_server/http_server.py 
+    python3 tests/tests_http_server/http_server.py # serveur sur le port 8080
     ```
     + Lancer le relai avec l'adresse (en local dans cet exemple) et le port du serveur HTTP
     ```bash
@@ -53,10 +53,10 @@ Implementation of TCP and HTTP relay mechanisms in Python.
     On peut remarquer sur le terminal du relai et celui du serveur les requêtes effectuées et HIT/MISS sur le cache.
 
 ### Sniffeur HTTP
-* Tester `ex2_sniffeur_http.py` : dans 2 terminaux différents depuis la racine du projet
+* Tester `ex2_sniffeur_http.py` (port 1235) : dans 2 terminaux différents depuis la racine du projet
     + Lancer le serveur HTTP
     ```bash
-    python3 tests/tests_http_server/http_server.py 
+    python3 tests/tests_http_server/http_server.py # serveur sur le port 8080
     ```
     + Lancer le relai avec l'adresse et le port du serveur HTTP
     ```bash
@@ -64,15 +64,19 @@ Implementation of TCP and HTTP relay mechanisms in Python.
     ```
     + Ouvrir un navigateur à l'adresse du relai
     ```bash
-    http://127.0.0.1:1234/ # adresse du relai à changer si machines différentes
-    http://127.0.0.1:1234/index.html
-    http://127.0.0.1:1234/chiot.jpg
-    http://127.0.0.1:1234/toto # Renvoie erreur 404
+    http://127.0.0.1:1235/ # adresse du relai à changer si machines différentes
+    http://127.0.0.1:1235/index.html
+    http://127.0.0.1:1235/chiot.jpg
+    http://127.0.0.1:1235/toto # Renvoie erreur 404
     ```
     Les requêtes faites par le client apparaissent dans `/logs/file.log`.
 
-### Censure HTTP
+### Censeur HTTP
+* Tester `ex2_censure_http.py` (port 1236) : dans 2 terminaux différents depuis la racine du projet
+    + Lancer le serveur HTTP
+    ```bash
+    python3 tests/tests_http_server/http_server.py # serveur sur le port 8080
+    ```
 
-
-## Ressources utilisée:
+## Ressources utilisées:
 Relai http: https://thepythoncode.com/article/building-a-tcp-proxy-with-python
