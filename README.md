@@ -76,14 +76,17 @@ Implementation of TCP and HTTP relay mechanisms in Python.
 #### Lancement
 ```bash
 cd tests/tests_http_server/fichiers && python3 -m http.server 8000   # terminal 1
-cd http_relay && python3 ex2_censure_http.py 127.0.0.1 8000  # terminal 2
+cd http_relay && python3 ex2_censure_http.py 127.0.0.1 8000  # terminal 2 / adresse à modifier si nécessaire
 ```
 
+#### Cas à vérifier
 
- `curl -i http://localhost:4567/` | 200 |
- `curl -i http://localhost:4567/public/test.txt` | 200 + contenu |
- `curl -i http://localhost:4567/prive/secret.txt` | 403 Forbidden |
- `curl -i http://localhost:4567/PRIVE/secret.txt` | 403 (insensible à la casse) |
+| Commande | Attendu |
+|---|---|
+| `curl -i http://localhost:4567/` | 200 |
+| `curl -i http://localhost:4567/public/test.txt` | 200 + contenu |
+| `curl -i http://localhost:4567/prive/secret.txt` | 403 Forbidden |
+| `curl -i http://localhost:4567/PRIVE/secret.txt` | 403 (insensible à la casse) |
 
 
 ## Ressources utilisées:
