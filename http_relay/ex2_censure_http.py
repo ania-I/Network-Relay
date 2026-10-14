@@ -3,11 +3,10 @@ from threading import *
 import sys
 import os
 import json
-import hashlib
 
 class HttpRelay:
     def __init__(self):
-        self._local_port: int = 1236
+        self._local_port: int = 4567
         self._remote_addr: str = ""
         self._remote_port: int = 0
         self._timeout: int = 2
