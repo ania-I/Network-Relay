@@ -1,6 +1,8 @@
 # Network-Relay
 Implementation of TCP and HTTP relay mechanisms in Python.
 
+### Anaïs Chhay & Ania Farez
+
 ## Exercice 1 : Relai TCP
 * Test simple de `ex1_relai.py` : dans 3 terminaux différents depuis la racine du projet
     + Lancer un server HTTP quelconque
