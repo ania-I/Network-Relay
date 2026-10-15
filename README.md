@@ -76,7 +76,7 @@ Implementation of TCP and HTTP relay mechanisms in Python.
 * Tester `ex2_censure_http.py` (port du censeur : 4567)
 ```bash
 cd tests/tests_http_server/fichiers && python3 -m http.server 8000   # terminal 1
-cd http_relay && python3 ex2_censure_http.py 127.0.0.1 8000  # terminal 2 / adresse à modifier si nécessaire
+python3 http_relay/ex2_censure_http.py 127.0.0.1 8000  # terminal 2 / adresse à modifier si nécessaire
 ```
 
 #### Cas à vérifier

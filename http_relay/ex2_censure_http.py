@@ -3,6 +3,10 @@ from threading import *
 import sys
 import os
 import json
+from pathlib import Path
+
+# Résolution des emplacements relatifs à l'espace de travail des fichiers
+BASE_DIR = Path(__file__).resolve().parent
 
 class HttpRelay:
     def __init__(self):
@@ -54,7 +58,8 @@ class HttpRelay:
     def check_censure(self):
         censure = []
         try:
-            with open(self._censure_file, "r", encoding="utf-8") as f:
+            file = BASE_DIR / self._censure_file
+            with file.open(encoding="utf-8") as f:
                 for elem in f:
                     elem = elem.strip().lower()
                     if elem == "" or elem.startswith("#"):
