@@ -92,6 +92,13 @@ python3 http_relay/ex2_censure_http.py 127.0.0.1 8000  # terminal 2 / adresse à
 
 Les IP qui sollicitent un site interdit sont stockées dans `logs/censure.log`.
 
-
 ## Ressources utilisées:
 Relai http: https://thepythoncode.com/article/building-a-tcp-proxy-with-python
+
+Sniffer: https://stackoverflow.com/questions/60609050/building-a-packet-sniffer-with-python-sockets
+
+Http communication doc:
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Messages
+
+https://medium.com/@imakashsharma135/understanding-request-and-response-model-a-general-overview-831c24d2288
+
